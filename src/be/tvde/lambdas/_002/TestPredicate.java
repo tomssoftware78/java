@@ -18,5 +18,21 @@ public class TestPredicate {
       Predicate<Integer> predicate = i -> i < 0;
       System.out.println("Predicate: " + predicate.test(-1)); //true
       System.out.println("Predicate: " + predicate.test(1)); //false
+
+      int x = 4;
+      System.out.println("Is " + x + " even? " + check(x, n -> n % 2 == 0)); //true
+      x = 7;
+      System.out.println("Is " + x + " even? " + check(x, n -> n % 2 == 0)); //false
+
+      String name = "Mr. Joe Bloggs";
+      System.out.println("Does " + name + " start with Mr. ? " +
+                         check(name, s -> s.startsWith("Mr."))); //true
+      name = "Ms. Ann Bloggs";
+      System.out.println("Does " + name + " start with Mr. ? " +
+                         check(name, s -> s.startsWith("Mr."))); //false
+   }
+
+   static <T> boolean check(T t, Predicate<T> lambda) {
+      return lambda.test(t);
    }
 }
